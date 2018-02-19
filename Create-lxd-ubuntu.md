@@ -1,6 +1,6 @@
 # Bring up lxd containers on Ubuntu (14.04 trusty)
 
-## Steps to bring up lxd containers in privileged mode
+## Steps to bring up lxd containers in unprivileged mode
 
 ```
 apt install -t trusty-backports lxd lxd-client
