@@ -70,3 +70,5 @@ else
    echo "Unsupported OS for now !!!"
    EXITCODE=1
 fi
+
+exit $EXITCODE
