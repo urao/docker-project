@@ -8,5 +8,6 @@
     3. Create docker-compose.yaml [file](https://github.com/urao/kubernetes-act/blob/master/docker-compose.yml)
     4. Create certificates, using command, 
        ``` openssl req -newkey rsa:4096 -nodes -sha256 -keyout certs/ca.key -x509 -days 365 -out certs/ca.crt ```
+    5. Copy file() to /etc/docker/daemon.json
     5. Run ``` docker-compose up -d ```
     6. Verify the command return null ``` curl --insecure https://registry.com:5000/v2/ ```
