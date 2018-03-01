@@ -5,7 +5,7 @@
 - apt install -t trusty-backports lxd lxd-client
 - lxd init
 - lxc launch ubuntu:16.04 helloc
-- Wait for couple of minutes to download the image
+- wait for couple of minutes to download the image
 - lxc list (List all the containers)
 - lxc exec helloc -- /bin/bash
 - Check if IP is assigned to the container, if not do, dhclient <veth-interface-name>
