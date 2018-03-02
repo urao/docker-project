@@ -1,5 +1,5 @@
-# Tested on Ubuntu 16.04.4
-## Requires 3 servers/VM's used for registry, build and deploy
+## Tested on Ubuntu 16.04.4
+#### Requires 3 servers/VM's used for registry, build and deploy
 
 - On all the 3 servers, deploy docker using the script, [Github page](https://github.com/urao/kubernetes-act/blob/master/install_docker.sh)
 
