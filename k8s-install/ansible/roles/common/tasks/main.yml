@@ -1,0 +1,51 @@
+---
+# Common setup for all the hosts
+#
+- name: Sanity sleep
+  pause: seconds=60
+
+- name: Disable security 
+  selinux:
+    state: disabled
+
+- name: Install ntp
+  yum:
+    name: ntp
+    state: latest
+
+- name: Make sure ntpd is running
+  service: name=ntpd state=started enabled=yes
+
+- name: Disable swap
+  command: swapoff -a
+
+- name: Disable firewall service
+  service: name=firewalld state=stop enabled=no
+
+- name: Load netfilter onto kernel
+  modprobe:
+    name: br_netfilter
+    state: present
+
+- name: Append bridge-iptables file
+  shell: |
+    echo '1' >> /proc/sys/net/bridge/bridge-nf-call-iptables
+
+- name: Copy kuberenetes repo file
+  copy: 
+    src: "{{ role_path }}/files/kubernetes.repo"
+    dest: /etc/yum.repos.d/kubernetes.repo
+
+- name: Install docker and kubeadm
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+     - docker
+     - kubeadm
+
+- name: Make sure docker is running
+  service: name=docker state=started enabled=yes
+
+- name: Make sure kubelet is running
+  service: name=kubelet state=started enabled=yes

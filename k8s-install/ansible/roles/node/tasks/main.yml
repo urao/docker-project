@@ -1,0 +1,25 @@
+---
+# Setup for all the nodes
+#
+- name: Sanity sleep
+  pause: seconds=60
+
+- name: Reset existing k8s
+  shell: "kubeadm reset"
+  register: reset_cluster
+
+- name: Join to k8s cluster
+  when: reset_cluster|succeeded
+  shell: |
+          kubeadm join --skip-preflight-checks \
+                       --token {{ token }} \
+                       {{ groups['master'][0] }}:6443 \
+                       --discovery-token-unsafe-skip-ca-verification
+  register: join_cluster
+
+- name: Reload kubelet service
+  systemd: 
+    name: kubelet
+    daemon_reload: yes
+    state: restarted
+    enabled: yes

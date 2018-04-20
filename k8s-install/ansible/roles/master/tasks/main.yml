@@ -1,0 +1,28 @@
+---
+# Setup for all the master
+#
+- name: Sanity sleep
+  pause: seconds=60
+
+- name: Reset existing k8s
+  shell: "kubeadm reset"
+  register: reset_cluster
+
+- name: Init kubeadm 
+  when: reset_cluster|succeeded
+  shell: |
+          kubeadm init --token {{ token }}
+  register: init_cluster
+
+- name: Create k8s config directory
+  file: path="~/.kube" state=directory
+
+- name: Copy admin.conf to home directory
+  when: init_cluster
+  copy:
+    src: "{{ kubeadmin_config }}"
+    dst: "~/.kube/config"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0755
+    remote_src: True

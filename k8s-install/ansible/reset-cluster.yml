@@ -1,0 +1,10 @@
+---
+
+- name: reset all the nodes in the cluster
+  gather_facts: no
+  hosts: k8s-cluster
+  become: true
+  tasks:
+    - name: Reset k8s
+      shell: "kubeadm reset"
+      ignore_erros: true
