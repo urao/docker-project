@@ -1,0 +1,11 @@
+---
+
+- name: check the k8s-cluster status
+  gather_facts: no
+  hosts: master
+  become: true
+  tasks:
+    - name: check status of master and nodes in the cluster
+      shell: "kubectl get nodes"
+      register: cluster_status
+      ignore_errors: "'NotReady' in cluster_status.stderr"
