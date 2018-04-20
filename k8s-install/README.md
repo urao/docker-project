@@ -29,6 +29,12 @@ After the above setup, run `install.yml` playbook:
 ansible-playbook install.yml
 ```
 
+After the above install, run `validate-cluster.yml` playbook:
+
+```
+ansible-playbook validate-cluster.yml
+```
+
 # Reset the cluster
 
 Reset all the cluster nodes state using `reset-cluster.yml` playbook:
