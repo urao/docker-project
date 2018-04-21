@@ -1,6 +1,6 @@
 # Deploy kubernetes cluster using Ansible
 
-- Works on Centos 7
+- Tested on Centos 7
 
 Requirements:
 
