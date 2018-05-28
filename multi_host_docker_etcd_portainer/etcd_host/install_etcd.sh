@@ -3,14 +3,15 @@
 set -e
 
 EXITCODE=0
-ETCD_VERSION=v3.2.1
+ETCD_VERSION=v3.3.5
 
 function deploy_on_centos ()
 {
-   echo "Deploying etcd on Centos...."
-   echo "First, remove existing version of docker"
+   echo "First, remove existing version of etcd"
    rm -rf /tmp/etcd-${ETCD_VERSION}-linux-amd64.tar.gz
+   rm -rf /usr/local/bin/etcd*
 
+   echo "Deploying etcd on Centos...."
    sudo yum update -y
    sudo yum install -y epel-release
    sudo yum install -y jq wget telnet net-tools curl util-linux
