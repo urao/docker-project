@@ -1,1 +1,1 @@
-### Steps to bring up standalone etcd service on server/VM
+### Steps to bring up multi-host docker with etcd
