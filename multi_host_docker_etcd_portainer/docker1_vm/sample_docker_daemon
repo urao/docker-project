@@ -1,0 +1,5 @@
+{
+  "debug": true,
+  "cluster-store": "etcd://192.168.122.165:2379",
+  "cluster-advertise": "192.168.122.168:2375"
+}

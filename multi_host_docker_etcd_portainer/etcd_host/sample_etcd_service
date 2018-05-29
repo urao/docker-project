@@ -1,0 +1,13 @@
+[Unit]
+Description=Etcd Server
+Documentation=https://github.com/coreos/etcd
+
+[Service]
+User=root
+Type=notify
+Restart=always
+ExecStart=/usr/bin/etcd --name etcdvm --data-dir /var/lib/etcd --listen-peer-urls http://192.168.122.165:2380 --listen-client-urls http://0.0.0.0:2379 --advertise-client-urls http://192.168.122.165:2379
+NotifyAccess=all
+
+[Install]
+WantedBy=multi-user.target
