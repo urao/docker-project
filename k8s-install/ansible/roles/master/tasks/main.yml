@@ -21,7 +21,7 @@
   when: init_cluster
   copy:
     src: "{{ kubeadmin_config }}"
-    dst: "~/.kube/config"
+    dest: "~/.kube/config"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: 0755

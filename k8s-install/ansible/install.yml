@@ -29,3 +29,10 @@
   roles:
      - { role: extras }
 
+- name: setup calico as cni
+  gather_facts: yes
+  hosts: master
+  become: true
+  roles:
+     - { role: cni }
+

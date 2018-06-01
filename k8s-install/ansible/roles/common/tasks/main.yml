@@ -8,10 +8,17 @@
   selinux:
     state: disabled
 
-- name: Install ntp
+- name: Install required tools and ntp
   yum:
-    name: ntp
+    name: "{{ item }}"
     state: latest
+  with_items:
+     - ntp
+     - net-tools
+     - curl
+     - util-linux
+     - wget
+     - tcpdump
 
 - name: Make sure ntpd is running
   service: name=ntpd state=started enabled=yes
@@ -20,7 +27,7 @@
   command: swapoff -a
 
 - name: Disable firewall service
-  service: name=firewalld state=stop enabled=no
+  service: name=firewalld state=stopped enabled=no
 
 - name: Load netfilter onto kernel
   modprobe:
