@@ -16,7 +16,7 @@ function deploy_on_ubuntu ()
    sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
    sudo apt-get update -y
-   sudo apt-get install -y docker-ce wget telnet net-tools
+   sudo apt-get install -y docker-ce wget telnet net-tools tcpdump
 
    echo "verify if docker installed correctly or not"
    sudo docker run hello-world
@@ -43,7 +43,7 @@ function deploy_on_centos ()
    sudo yum install -y yum-utils device-mapper-persistent-data lvm2
    sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
    sudo yum update -y
-   sudo yum install -y docker-ce wget telnet net-tools
+   sudo yum install -y docker-ce wget telnet net-tools curl tcpdump
    sudo yum install -y epel-release
    sudo yum install -y jq
 
