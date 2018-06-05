@@ -17,7 +17,9 @@ function deploy_on_ubuntu ()
    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
    sudo apt-get update -y
    sudo apt-get install -y docker-ce wget telnet net-tools tcpdump
-
+   sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+   sudo chmod +x /usr/local/bin/docker-compose
+   
    echo "verify if docker installed correctly or not"
    sudo docker run hello-world
    RETVAL=$?
@@ -46,7 +48,9 @@ function deploy_on_centos ()
    sudo yum install -y docker-ce wget telnet net-tools curl tcpdump
    sudo yum install -y epel-release
    sudo yum install -y jq
-
+   sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+   sudo chmod +x /usr/local/bin/docker-compose
+   
    sudo systemctl start docker
    echo "verify if docker installed correctly or not"
    sudo docker run hello-world
