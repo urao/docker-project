@@ -1,0 +1,66 @@
+# Testing
+version: '2.1'
+services:
+  etcd0:
+    image: quay.io/coreos/etcd:v3.2.17
+    ports:
+     - "192.168.122.10:2379:2379"
+     - "192.168.122.10:2380:2380"
+     - "192.168.122.10:4001:4001"
+    restart: on-failure
+    hostname: etcd-node-0
+    environment:
+      - ETCD_DATA_DIR=/opt/etcd/data
+      - ETCD_NAME=etcd-node-0
+      - ETCD_ADVERTISE_CLIENT_URLS=http://192.168.122.10:2379,http://192.168.122.10:4001
+      - ETCD_LISTEN_CLIENT_URLS=http://0.0.0.0:2379,http://0.0.0.0:4001
+      - ETCD_LISTEN_PEER_URLS=http://0.0.0.0:2380
+      - ETCD_INITIAL_ADVERTISE_PEER_URLS=http://192.168.122.10:2380
+      - ETCD_INITIAL_CLUSTER=etcd-node-0=http://192.168.122.10:2380,etcd-node-1=http://192.168.122.11:2380,etcd-node-2=http://192.168.122.12:2380
+      - ETCD_INITIAL_CLUSTER_STATE=new
+    command:
+      etcd  
+    volumes:
+      - /opt/etcd/data:/opt/etcd/data
+  etcd1:
+    image: quay.io/coreos/etcd:v3.2.17
+    ports:
+     - "192.168.122.11:2379:2379"
+     - "192.168.122.11:2380:2380"
+     - "192.168.122.11:4001:4001"
+    restart: on-failure
+    hostname: etcd-node-1
+    environment:
+      - ETCD_DATA_DIR=/opt/etcd/data
+      - ETCD_NAME=etcd-node-1
+      - ETCD_ADVERTISE_CLIENT_URLS=http://192.168.122.11:2379,http://192.168.122.11:4001
+      - ETCD_LISTEN_CLIENT_URLS=http://0.0.0.0:2379,http://0.0.0.0:4001
+      - ETCD_LISTEN_PEER_URLS=http://0.0.0.0:2380
+      - ETCD_INITIAL_ADVERTISE_PEER_URLS=http://192.168.122.11:2380
+      - ETCD_INITIAL_CLUSTER=etcd-node-0=http://192.168.122.10:2380,etcd-node-1=http://192.168.122.11:2380,etcd-node-2=http://192.168.122.12:2380
+      - ETCD_INITIAL_CLUSTER_STATE=new
+    command:
+      etcd  
+    volumes:
+      - /opt/etcd/data:/opt/etcd/data
+  etcd2:
+    image: quay.io/coreos/etcd:v3.2.17
+    ports:
+     - "192.168.122.12:2379:2379"
+     - "192.168.122.12:2380:2380"
+     - "192.168.122.12:4001:4001"
+    restart: on-failure
+    hostname: etcd-node-2
+    environment:
+      - ETCD_DATA_DIR=/opt/etcd/data
+      - ETCD_NAME=etcd-node-2
+      - ETCD_ADVERTISE_CLIENT_URLS=http://192.168.122.12:2379,http://192.168.122.12:4001
+      - ETCD_LISTEN_CLIENT_URLS=http://0.0.0.0:2379,http://0.0.0.0:4001
+      - ETCD_LISTEN_PEER_URLS=http://0.0.0.0:2380
+      - ETCD_INITIAL_ADVERTISE_PEER_URLS=http://192.168.122.12:2380
+      - ETCD_INITIAL_CLUSTER=etcd-node-0=http://192.168.122.10:2380,etcd-node-1=http://192.168.122.11:2380,etcd-node-2=http://192.168.122.12:2380
+      - ETCD_INITIAL_CLUSTER_STATE=new
+    command:
+      etcd  
+    volumes:
+      - /opt/etcd/data:/opt/etcd/data
