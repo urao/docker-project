@@ -1,2 +1,2 @@
-# kubernetes-act
-Activities related to kubernetes
+# docker-k8s-project
+Activities related to docker, kubernetes
