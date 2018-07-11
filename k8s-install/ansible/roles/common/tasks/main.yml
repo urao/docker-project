@@ -19,6 +19,11 @@
      - util-linux
      - wget
      - tcpdump
+     - traceroute
+     - tshark
+     - mtr
+     - sysstat
+     - cowsay
 
 - name: Make sure ntpd is running
   service: name=ntpd state=started enabled=yes
