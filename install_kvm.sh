@@ -49,6 +49,10 @@ function deploy_on_centos ()
       EXITCODE=1
    fi
    sudo yum install "@X Window System" xorg-x11-xauth xorg-x11-fonts-* xorg-x11-utils -y
+   systemctl disable firewalld
+   iptables -F
+   sed -i "s/SELINUX=enforcing/SELINUX=disabled/g" /etc/selinux/config
+   reboot
 }
 
 
