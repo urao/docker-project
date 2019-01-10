@@ -8,7 +8,7 @@ function deploy_on_ubuntu ()
 {
    echo "Installing KVM and its packages...."
    sudo apt-get update -y
-   sudo apt-get install -y qemu-kvm libvirt-bin virtinst bridge-utils cpu-checker
+   sudo apt-get install -y qemu-kvm libvirt-bin virtinst bridge-utils cpu-checker libguestfs-tools
 
    echo "Verify KVM is installed"
    sudo kvm-ok
@@ -31,7 +31,7 @@ function deploy_on_centos ()
 {
    echo "Installing KVM and its packages...."
 
-   sudo yum install qemu-kvm qemu-img virt-manager libvirt libvirt-python libvirt-client virt-install virt-viewer bridge-utils -y
+   sudo yum install qemu-kvm qemu-img virt-manager libvirt libvirt-python libvirt-client virt-install virt-viewer bridge-utils libguestfs libguestfs-tools -y
    sudo systemctl start libvirtd
    sudo systemctl enable libvirtd
 
