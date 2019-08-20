@@ -8,6 +8,7 @@ function deploy_on_ubuntu ()
 {
    echo "Installing KVM and its packages...."
    sudo apt-get update -y
+   sudo apt-get install -y software-properties-common sshpass
    sudo apt-get install -y qemu-kvm libvirt-bin virtinst bridge-utils cpu-checker libguestfs-tools
 
    echo "Verify KVM is installed"
