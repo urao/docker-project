@@ -1,2 +1,2 @@
-# docker-k8s-project
-Activities related to docker, kubernetes
+# docker-project
+Activities related to docker
