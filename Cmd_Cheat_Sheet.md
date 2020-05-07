@@ -9,3 +9,8 @@ docker-compose down  <<< containers stopped and deleted
 docker image ls
 docker image rm <image_name>
 ```
+
+### Keep docker running for debug purpose
+```
+CMD tail -f /dev/null
+```
