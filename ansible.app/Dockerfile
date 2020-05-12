@@ -1,12 +1,14 @@
+
+ARG ANSIBLE_VERSION=2.8.3 
 FROM centos:centos7
-MAINTAINER urao@ansible.com
+MAINTAINER urao
 
 # Install required pkgs
 RUN yum update -y && \
-    yum clean all && \
     yum -y install epel-release && \
     yum install -y python-pip python-devel gcc gcc-c++ make openssl-devel \
-        libffi-devel rsync sshpass git net-tools jq
+        libffi-devel rsync sshpass git net-tools jq && \
+    yum clean all
 
 # Upgrade pip
 RUN pip install --upgrade pip
@@ -23,7 +25,6 @@ WORKDIR /ansible
 VOLUME ["/ansible"]
 
 # Install ansible
-ARG ANSIBLE_VERSION=2.8.3 
 RUN pip install ansible==$ANSIBLE_VERSION
 
 RUN pip install markupsafe httplib2 yamllint passlib
