@@ -14,6 +14,7 @@ docker export <container_id> | gzip > <docker_name>.tgz
 docker stats
 docker stats <IMAGE_ID>
 docker build -t netdata:1.0 .
+docker build -f netdata_app/Dockerfile -t netdata .
 ```
 
 ```
