@@ -13,6 +13,7 @@ docker history --no-trunc <image_id> | tac | tr -s ' ' | cut -d " " -f 5- | sed 
 docker export <container_id> | gzip > <docker_name>.tgz
 docker stats
 docker stats <IMAGE_ID>
+docker build -t netdata:1.0 .
 ```
 
 ```
