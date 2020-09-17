@@ -23,6 +23,10 @@ docker load --input image.tar
 docker image tag <IMAGE_ID> <IMAGE_NAME>:<VERSION>
 ```
 
+```
+docker login --username=urao
+docker pull urao/fluentd:v1.11.1
+```
 
 ### Keep docker running for debug purpose
 ```
