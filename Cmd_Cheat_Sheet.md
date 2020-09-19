@@ -5,6 +5,8 @@ docker-compose images
 docker-compose ps
 docker-compose restart
 docker-compose down  <<< containers stopped and deleted
+docker-compose down -v
+docker search busybox
 docker image ls
 docker image rm <image_name>
 docker image rm -f <IMAGE_ID>
