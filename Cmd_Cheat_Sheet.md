@@ -21,6 +21,7 @@ docker build -f netdata_app/Dockerfile -t netdata .
 ```
 
 ```
+docker save <IMAGE_ID> > <IMAGE_NAME>.tar
 docker load --input image.tar
 docker image tag <IMAGE_ID> <IMAGE_NAME>:<VERSION>
 ```
