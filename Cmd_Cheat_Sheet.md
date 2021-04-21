@@ -24,6 +24,7 @@ docker build -f netdata_app/Dockerfile -t netdata .
 
 ```
 docker save <IMAGE_ID> > <IMAGE_NAME>.tar
+docker save -o <NAME>.tar <IMAGE>:<VERSION>
 docker load --input image.tar
 docker image tag <IMAGE_ID> <IMAGE_NAME>:<VERSION>
 ```
@@ -35,6 +36,12 @@ docker tag <IMAGE_ID> urao/fluentd:v1.11.1
 docker push urao/fluentd:v1.11.1
 docker login --username=urao
 docker pull urao/fluentd:v1.11.1
+```
+
+```
+docker run -it -v /data:/root/data ansible bash
+docker run -it -v /root/data:/data ansible ansible-playbook update_dhcpd_conf.yml -e jsonVar="@./newhost.json"
+docker run --rm -v ~/.kube:/root/.kube --network=host --name=kubectl-host ukubectl:latest bash -c 'kubectl get pods'
 ```
 
 ### Keep docker running for debug purpose
