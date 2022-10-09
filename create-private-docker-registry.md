@@ -21,3 +21,12 @@ docker push 192.168.24.10:5000/contrail-cni-init:22.1.0.93
 ```
 docker image ls
 ```
+6. Add daemon.json under /etc/docker, with below contents and restart docker service
+```
+{
+  "insecure-registries" : ["192.168.24.10:5000"]
+}
+```
+```
+systemctl restart docker
+```
