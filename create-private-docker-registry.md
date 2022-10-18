@@ -30,3 +30,20 @@ docker image ls
 ```
 systemctl restart docker
 ```
+
+### Steps to create private docker registry with simple credentials
+
+1. Follow step 1, 2
+2. Run below commands
+```
+mkdir -p $HOME/auth
+docker run --entrypoint htpasswd httpd:2 -Bbn <username> <password> > $HOME/auth/creds
+docker run -d   -p 5000:5000   --restart=always   --name registry   -v "$(pwd)"/auth:/auth \
+   -e "REGISTRY_AUTH=htpasswd"   -e "REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm" \
+   -e REGISTRY_AUTH_HTPASSWD_PATH=/auth/creds registry:2
+```
+3. Check using docker login command
+```
+docker login 192.168.24.10 -u <username> --password-stdin
+```
+4. Run above steps 4,5,6
